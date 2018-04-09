@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div class="cont">
+    <table class="c_table" border="1" width="100%">
+        <tbody>
+
+        <tr style="height: 100px">
+            <th colspan="4" class="thh3">购车明细</th>
+        </tr>
+        <tr class="tabtitl">
+            <td width="18%">款项</td>
+            <td width="32%">选项</td>
+            <td width="18%">金额</td>
+            <td>明细</td>
+        </tr>
+
+
+        <tr>
+            <td class="ltainput">网报车价</td>
+            <td></td>
+            <td><input id="carPrice" name=""  maxlength="8" type="text">元</td>
+            <td class="col99"></td>
+        </tr>
+        <tr>
+            <td class="ltainput">开票价</td>
+            <td></td>
+            <td><input id="ticketPrice" name=""  maxlength="8" type="text">元</td>
+            <td class="col99"></td>
+        </tr>
+        <tr>
+            <td class="ltainput">优惠车价</td>
+            <td></td>
+            <td><input id="goodPrice" name=""  maxlength="8" type="text">元</td>
+            <td class="col99"></td>
+        </tr>
+        <tr>
+            <td class="ltainput">GPS N</td>
+            <td></td>
+            <td><input id="gpsPrice" name=""  maxlength="8" type="text">元</td>
+            <td class="col99"></td>
+        </tr>
+        <tr>
+            <td class="ltainput">保险 N</td>
+            <td></td>
+            <td><input id="safePrice" name=""  maxlength="8" type="text">元</td>
+            <td class="col99"></td>
+        </tr>
+        <tr>
+            <td class="ltainput">首付款</td>
+            <td>
+                <div>首付额度：</div>
+                <ul class="tabul2">
+                    <li><label><input id="rdPrepayment30" name="rdPrepayment" value="0.3" checked="checked" type="radio">30%</label></li>
+                    <li><label><input id="rdPrepayment40" name="rdPrepayment" value="0.4" type="radio">40%</label></li>
+                    <li><label><input id="rdPrepayment50" name="rdPrepayment" value="0.5" type="radio">50%</label></li>
+                    <li><label><input id="rdPrepayment60" name="rdPrepayment" value="0.6" type="radio">60%</label></li>
+                    <li><label><input id="rdPrepaymentCustom" name="rdPrepayment" value="0" type="radio">自定义</label></li>
+                </ul>
+            </td>
+            <td><input id="txtPrepayment" name="" class="input2" disabled="true" value="0" maxlength="8" type="text">元</td>
+            <td class="col99"></td>
+        </tr>
+        <tr>
+            <td class="ltainput">月付额度</td>
+            <td>
+                <div>还款年限：</div>
+                <ul class="tabul2">
+                    <li><label><input id="rdLoanYears1" name="rdLoanYears" value="1" type="radio">1年</label></li>
+                    <li><label><input id="rdLoanYears2" name="rdLoanYears" value="2" type="radio">2年</label></li>
+                    <li><label><input id="rdLoanYears3" name="rdLoanYears" value="3" checked="checked" type="radio">3年</label></li>
+                    <li><label><input id="rdLoanYears4" name="rdLoanYears" value="4" type="radio">4年</label></li>
+                    <li><label><input id="rdLoanYears5" name="rdLoanYears" value="5" type="radio">5年</label></li>
+                </ul>
+            </td>
+            <td><input id="txtMonthPay" name="" class="input2" maxlength="8" value="0" disabled="true" type="text">元</td>
+            <td class="col99 pad10"></td>
+        </tr>
+        <tr>
+            <td class="ltainput">贷款数每月比率</td>
+            <td>
+                <div>比率：</div>
+                <ul class="tabul2">
+                    <li><label><input id="twoYears" name="rateLoanYears" value="1" type="radio">0.042977</label></li>
+                    <li><label><input id="threeYears" name="rateLoanYears" value="2" type="radio">0.02952</label></li>
+                </ul>
+            </td>
+            <td><input id="ratePay" name="" class="input2" maxlength="8" value="0" disabled="true" type="text">元</td>
+            <td class="col99 pad10"></td>
+        </tr>
+
+        <tr>
+            <td class="ltainput">月供</td>
+            <td><button type="button" style="width: 100px;height: 30px" onclick="totalFunc()">计算</button></td>
+            <td><input id="monthPrice" name="" disabled maxlength="8" type="text">元</td>
+            <td class="col99"></td>
+        </tr>
+        <tr>
+            <td class="ltainput">利息</td>
+            <td><button type="button" style="width: 100px;height: 30px" onclick="totalFunc()">计算</button></td>
+            <td><input id="interestPrice" name="" disabled maxlength="8" type="text">元</td>
+            <td class="col99"></td>
+        </tr>
+        <tr>
+            <td class="ltainput">必要费用</td>
+            <td><button type="button" style="width: 100px;height: 30px" onclick="nessFunc()">计算</button></td>
+            <td><input id="nessPrice" name="" disabled maxlength="8" type="text">元</td>
+            <td class="col99">手续费3000 + 商户抵押 500 + GPSN + 保险N + 购置税（网报车价 ÷ 11.7 × 0.75)</td>
+        </tr>
+        <tr>
+            <td class="ltainput">提车首付款</td>
+            <td><button type="button" style="width: 100px;height: 30px" onclick="firstFunc()">计算</button></td>
+            <td><input id="firstPrice" name="" disabled maxlength="8" type="text">元</td>
+            <td class="col99"></td>
+        </tr>
+        <tr>
+            <td class="ltainput">总费用</td>
+            <td><button type="button" style="width: 100px;height: 30px" onclick="totalFunc()">计算</button></td>
+            <td><input id="totalPrice" name="" disabled maxlength="8" type="text">元</td>
+            <td class="col99">提车首付款+（月供 × 期数) </td>
+        </tr>
+
+        <tr>
+            <td class="ltainput">贷款额</td>
+            <td></td>
+            <td><input id="txtBankLoan" name="" class="input2" maxlength="8" value="0" disabled="true" type="text">元</td>
+            <td class="col99 ">贷款额=购车价格 - 首付款</td>
+        </tr>
+
+        <tr>
+            <td class="ltainput">首期付款额</td>
+            <td></td>
+            <td><input id="txtTotalPrepayment" name="" class="input2" value="0" maxlength="8" disabled="true" type="text">元</td>
+            <td class="col99">首期付款总额=首付款+必要花费+商业保险</td>
+        </tr>
+
+
+        <tr>
+            <td class="tablefs" colspan="4">
+                <div class="text">
+                    贷款按<span id="spanYearsBottom" class="texred">0</span>年计算，您需要首付<span id="spanPrepaymentBottom" class="texred">0</span>元+月供<span id="spanMonthPayBottom" class="texred">0</span>元（<span id="spanMonthsBottom">0</span>个月）=总共花费<span id="spanRepaymentBottom" class="texred">0</span>元
+                </div>
+                <div class="text">
+                    比全款购车多花费<span id="spanLoanMoreCostBottom" class="texred">0</span>元<a href="javascript:void(0);" class="cd-btn-calculator" id="apply_second_button">申请贷款</a>
+                </div>
+                <div class="col9933">此结果仅供参考，实际费用以当地缴费为准</div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+<script>
+    function myFunc() {
+
+    }
+    function nessFunc() {   //必要费用
+        var goodprice = document.getElementById("goodPrice").value;
+        console.log(goodprice);
+        document.getElementById("goodPrice").value="haha";
+    }
+    function firstFunc() {      //提车首付款
+
+    }
+    function totalFunc() {      //总费用
+
+    }
+
+
+</script>
+</html>

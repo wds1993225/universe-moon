@@ -1,0 +1,34 @@
+#爬虫工具的默认配置文件
+
+
+#爬虫线程数
+threadNum: 10
+
+
+#阻塞队列最大长度
+queueMaxLength: 100000
+
+#是否开启redis去重
+useRemoveDuplicate: false
+#redis去重中，使用SET类型去重，SET的名字
+removalDuplicateSETName: duplicateSet
+
+#随机数，用于决定一个爬虫任务休眠几秒
+randomNum: 0
+
+#代理IP
+proxyIp:
+
+#是否使用随机user-agent
+isUseUserAgent: true
+
+#监控器
+moonMonitor:
+
+
+#任务队列的名字
+moonQueueName:
+#任务队列
+moonQueue:
+
+
