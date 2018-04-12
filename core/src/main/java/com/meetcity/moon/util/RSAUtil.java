@@ -1,4 +1,4 @@
-package com.meetcity.moon;
+package com.meetcity.moon.util;
 
 
 import java.math.BigInteger;
@@ -30,7 +30,7 @@ import org.apache.log4j.Logger;
  * 方法{@link #encrypt(String, String)}和js的jsencrypt一样
  */
 @Slf4j
-public class RSA {
+public class RSAUtil {
     /**
      * 指定key的大小
      */
@@ -43,7 +43,7 @@ public class RSA {
         /** RSA算法要求有一个可信任的随机数源 */
         SecureRandom sr = new SecureRandom();
         /** 为RSA算法创建一个KeyPairGenerator对象 */
-        KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
+        KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSAUtil");
         /** 利用上面的随机数据源初始化这个KeyPairGenerator对象 */
         kpg.initialize(KEYSIZE, sr);
         /** 生成密匙对 */
@@ -80,7 +80,7 @@ public class RSA {
             throws Exception {
         Key key = getPublicKey(publicKey);
         /** 得到Cipher对象来实现对源数据的RSA加密 */
-        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+        Cipher cipher = Cipher.getInstance("RSAUtil/ECB/PKCS1Padding");
         cipher.init(Cipher.ENCRYPT_MODE, key);
         byte[] b = source.getBytes();
         /** 执行加密操作 */
@@ -95,7 +95,7 @@ public class RSA {
             throws Exception {
         Key key = getPrivateKey(privateKey);
         /** 得到Cipher对象对已用公钥加密的数据进行RSA解密 */
-        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+        Cipher cipher = Cipher.getInstance("RSAUtil/ECB/PKCS1Padding");
         cipher.init(Cipher.DECRYPT_MODE, key);
         byte[] b1 = Base64.decodeBase64(cryptograph.getBytes());
         /** 执行解密操作 */
@@ -113,7 +113,7 @@ public class RSA {
     public static PublicKey getPublicKey(String key) throws Exception {
         X509EncodedKeySpec keySpec = new X509EncodedKeySpec(
                 Base64.decodeBase64(key.getBytes()));
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        KeyFactory keyFactory = KeyFactory.getInstance("RSAUtil");
         PublicKey publicKey = keyFactory.generatePublic(keySpec);
         return publicKey;
     }
@@ -127,7 +127,7 @@ public class RSA {
     public static PrivateKey getPrivateKey(String key) throws Exception {
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(
                 Base64.decodeBase64(key.getBytes()));
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        KeyFactory keyFactory = KeyFactory.getInstance("RSAUtil");
         PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
         return privateKey;
     }

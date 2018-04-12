@@ -11,6 +11,7 @@
         <module>core</module>
         <module>web</module>
         <module>component</module>
+        <module>autotrade</module>
     </modules>
     <packaging>pom</packaging>
 
