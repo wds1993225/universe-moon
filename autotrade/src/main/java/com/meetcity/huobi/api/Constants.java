@@ -8,5 +8,5 @@ package com.meetcity.huobi.api;
 public class Constants {
 
     public static String base_url = "api.huobi.pro";
-    public static String AccessKeyId = "";
+    public static String AccessKeyId = "e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx";
 }
