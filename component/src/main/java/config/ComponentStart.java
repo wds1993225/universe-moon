@@ -1,5 +1,6 @@
 package config;
 
+import kafka.KafKaConfig;
 import redis.RedisConfig;
 import redis.clients.jedis.Jedis;
 
@@ -10,5 +11,9 @@ public class ComponentStart {
         jedis.set("haha","abcn");
         String a = jedis.get("haha");
         System.out.println("a");
+    }
+
+    public void kafkaConfigTest(){
+
     }
 }
