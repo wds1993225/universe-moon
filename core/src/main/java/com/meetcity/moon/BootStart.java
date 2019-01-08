@@ -3,7 +3,6 @@ package com.meetcity.moon;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.meetcity.moon.example.UACHelper;
 import com.meetcity.moon.spider.SpiderCore;
 import com.meetcity.moon.spider.download.HttpDownloader;
 import com.meetcity.moon.spider.schedule.MoonTask;
@@ -54,7 +53,7 @@ public class BootStart {
         System.out.println();
 
         List<String> list = getMonthStartDayEndCurrent(6);
-        for(int i = 0;i<list.size() ;i++){
+        for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i));
         }
         System.out.println("");
@@ -72,21 +71,6 @@ public class BootStart {
         }
         System.out.println("");
 
-    }
-
-
-    public static void main11(String[] args) throws Exception {
-
-
-        UACHelper helper = new UACHelper();
-        helper.start();
-        try {
-            Response response = OkHttpUtil.get("https://uac.10010.com/portal/Service/CheckNeedVerify?callback=jQuery1720759029309307317_1519737698574&userName=13121650833&pwdType=01&_=1519737713443");
-            String result = response.body().string();
-            System.out.printf("");
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
     }
 
 
