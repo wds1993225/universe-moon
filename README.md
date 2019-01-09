@@ -3,11 +3,11 @@
 
 ----
 
-### Architecture
+## Architecture
 
 ![](https://github.com/wds1993225/universe-moon/blob/master/MoonNo.4.png)
 
-### component-dependency
+## component-dependency
     
     Core:包含基本的工具，包含爬虫框架
     Component:包含对redis，zookeeper等的操作和配置
@@ -22,41 +22,31 @@
 
 ----
 
-#### core 包含爬虫项目
+### core 包含爬虫项目
 > 每一个模块都是一个服务，所有的服务都注册到Zookeeper进行统一管理和扩展。
 
 
-#### 组成:
+### 组成:
 
-* ##### Zookeeper
-    >管理所有的服务，支持负责均衡和热插拔。
 
-* ##### Administrator
-    > 负责管理整个系统的运行，通过控制```ZooKeeper```来控制系统服务的启动和停止，及提供系统运行的参数。
 
-* ##### Monitor
-    > 系统的监控，通过连接ZooKeeper来监控系统运行情况，以及通过邮箱的形式进行警报。监控数据应该上传到```ElasticSearch```中形成运行报告。
-
-* ##### Logger
-    > 系统运行日志，包括ZooKeeper生产的日志和各个服务生产的日志，上传到```ElasticSearch```中进行统计。
-
-* ##### SeedRepo
+* #### SeedRepo
     > 保存种子任务，种子的构建需要以一个更加解耦，灵活的方式构建，以便配合各个组件。
 
-* ##### URLManager
+* #### URLManager
     > 负责URL的重要性排序，分发，调度，任务分配。
 一般来说，一个爬取任务中包含几千到一万个URL，这些URL最好是来自不同的host，这样，不会给一个host在很短一段时间内造成高峰值。
 
-* ##### Task Queue
+* #### Task Queue
     > 用于传递生产出的种子任务，连接```Producer```和```Worker```。需要根据种子的构建方式进行特定构建，支持不同种子通道，支持任务消费失败后的重新消费，支持任务消费成功后的上报。
 
-* ##### Result Queue
+* #### Result Queue
     > 传递下载或解析后的数据。可以支持多种类型的数据，支持多种类型的消费者。
 
-* ##### DB
+* #### DB
     > 用于保存文件，原始文件推荐使用```HDFS```，解析后的结构化数据推荐```MongoDB```。
 
-* ##### Worker
+* #### Worker
     > 承担整个消费者的主要任务，包括下载，解析，上传三个部分。
 
     * ##### Downloader
@@ -68,11 +58,18 @@
     * ##### Uploader
         > 承担```Worker```的上传操作，会将解析的结果推入```Result Queue```中。
         上传器应该可以配合种子任务中的各种上传规则进行相应队列的上传操作。
-* ##### Logger
+        
+* #### Zookeeper
+    >管理所有的服务，支持负责均衡和热插拔。
+
+* #### Administrator
+    > 负责管理整个系统的运行，通过控制```ZooKeeper```来控制系统服务的启动和停止，及提供系统运行的参数。
+
+* #### Logger
     > 保存系统运行的情况，日志一方面来自```ZooKeeper```，一方面来自各个服务。
     数据最终会上报到```ElasticSearch```中进行日志的收集。
     
-* ##### Monitor
+* #### Monitor
     > 监控的数据主要来自于```ZooKeeper```，目的就是为了监控各个服务的运行情况，如果系统出现问题就会进行邮件报警。
     监控数据最终会收集到```ElasticSearch```中，配合```Grafana```进行视图展示。
 
@@ -80,25 +77,25 @@
 
 ----
 
-##### 启动方式:
+#### 启动方式:
 
     MoonTask moonParam = new MoonTask("http://www.baidu.com");
     SpiderCore spiderCore = new SpiderCore(moonParam, new HttpDownloader(), null, null);
     spiderCore.start();
 
 
-##### 任务队列:
+#### 任务队列:
 
     默认的blockQueue
     扩展的RedisQueue
 
     队列中存放请求和处理的基本参数 {@see:MoonTask}
 
-##### 去重方式：
+#### 去重方式：
 
     通过redis去重，去重使用的key : MD5(url+参数)
 
-##### 针对反爬
+#### 针对反爬
     
     默认使用随机UserAgent，可以配置中关闭
     
