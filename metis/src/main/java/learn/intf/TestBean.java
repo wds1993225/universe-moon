@@ -1,6 +1,5 @@
-package com.meetcity.moon.learn.intf;
+package learn.intf;
 
-import lombok.Data;
 
 import java.io.Serializable;
 

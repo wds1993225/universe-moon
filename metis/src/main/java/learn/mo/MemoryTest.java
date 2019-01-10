@@ -1,4 +1,4 @@
-package com.meetcity.moon.learn.mo;
+package learn.mo;
 
 public class MemoryTest {
 

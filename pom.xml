@@ -12,8 +12,10 @@
         <module>web</module>
         <module>component</module>
         <module>autotrade</module>
+        <module>metis</module>
+        <module>eden</module>
     </modules>
     <packaging>pom</packaging>
 
-    
+
 </project>

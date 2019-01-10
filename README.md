@@ -9,9 +9,13 @@
 
 ## component-dependency
     
-    Core:包含基本的工具，包含爬虫框架
+    Eden:包含基本的工具，包含爬虫框架
     Component:包含对redis，zookeeper等的操作和配置
     WEB:提供web服务
+    Core:单机爬虫
+    
+    Metis:自己学习的笔记
+    
     
     依赖关系应该为: component --> core --> web
 
@@ -22,7 +26,7 @@
 
 ----
 
-### core 包含爬虫项目
+### Eden 包含爬虫项目
 > 每一个模块都是一个服务，所有的服务都注册到Zookeeper进行统一管理和扩展。
 
 
@@ -43,9 +47,10 @@
 * #### Result Queue
     > 传递下载或解析后的数据。可以支持多种类型的数据，支持多种类型的消费者。
 
-* #### DB
+* #### Storage
     > 用于保存文件，原始文件推荐使用```HDFS```，解析后的结构化数据推荐```MongoDB```。
-
+* #### Duplicate removal
+    > 用于去重，通常使用```Redis```+```Bloom filter```实现，在添加任务前要知道任务是否被执行过。
 * #### Worker
     > 承担整个消费者的主要任务，包括下载，解析，上传三个部分。
 

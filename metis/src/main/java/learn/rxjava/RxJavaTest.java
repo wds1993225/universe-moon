@@ -1,4 +1,4 @@
-package com.meetcity.moon.learn.rxjava;
+package learn.rxjava;
 
 import io.reactivex.*;
 import io.reactivex.disposables.Disposable;

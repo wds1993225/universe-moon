@@ -1,6 +1,5 @@
-package com.meetcity.moon.learn.mo;
+package learn.mo;
 
-import com.alibaba.fastjson.JSON;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,7 +44,6 @@ public class Something {
         hahaha.put("nihai", null);
         hahaha.put("hfinaf", "fsfsf");
         hahaha.put("fsfsf", "fsfsffs");
-        String asfsdf = JSON.toJSONString(hahaha);
         System.out.println("");
     }
 
