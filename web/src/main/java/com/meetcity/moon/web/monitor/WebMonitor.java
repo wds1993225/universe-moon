@@ -1,12 +1,15 @@
+/*
 package com.meetcity.moon.web.monitor;
 
 import com.meetcity.moon.constant.Constants;
 import com.meetcity.moon.spider.monitor.MoonMonitor;
 import com.meetcity.moon.spider.schedule.MoonTask;
 
+*/
 /**
  * Created by moon on 2018/2/15 .
- */
+ *//*
+
 
 public class WebMonitor implements MoonMonitor {
 
@@ -38,3 +41,4 @@ public class WebMonitor implements MoonMonitor {
 
     }
 }
+*/

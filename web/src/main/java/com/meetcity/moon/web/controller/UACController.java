@@ -1,6 +1,5 @@
 package com.meetcity.moon.web.controller;
 
-import com.meetcity.moon.example.UACHelper;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,8 +12,6 @@ public class UACController {
 
     @RequestMapping("/moon/logininfo")
     private String loginInfo(){
-        UACHelper uacHelper = new UACHelper();
-        uacHelper.start();
         return "";
     }
 

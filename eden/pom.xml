@@ -13,6 +13,7 @@
 
 
     <properties>
+        <HttpClient>4.5.6</HttpClient>
         <okhttp3>3.9.0</okhttp3>
         <elasticsearch>5.6.3</elasticsearch>
         <fastjson>1.2.39</fastjson>
@@ -25,6 +26,7 @@
         <htmlunit>2.27</htmlunit>
         <yamlbeans>1.09</yamlbeans>
         <lombok>1.16.10</lombok>
+        <junit>4.11</junit>
     </properties>
 
     <dependencies>
@@ -73,11 +75,18 @@
             <artifactId>htmlunit</artifactId>
             <version>${htmlunit}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
+
+        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpcore</artifactId>
-            <version>4.4.6</version>
+            <artifactId>httpclient</artifactId>
+            <version>${HttpClient}</version>
+        </dependency>
+        <!--http的mime类型都在这里面-->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>${HttpClient}</version>
         </dependency>
 
 
@@ -140,6 +149,14 @@
             <version>${guava}</version>
         </dependency>
 
+        <!--单元测试-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit}</version>
+            <scope>test</scope>
+        </dependency>
+
 
         <dependency>
             <groupId>com.meetcity</groupId>
@@ -164,7 +181,6 @@
             </plugin>
         </plugins>
     </build>
-
 
 
 </project>
