@@ -6,6 +6,7 @@ import com.meetcity.moon.spider.component.ProxyUtil;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.Proxy;
 import java.net.ProxySelector;
@@ -164,6 +165,50 @@ public class OkHttpUtil {
         //builder.addHeader("content-type", "application/json");
         builder.post(RequestBody.create(MediaType.parse("application/json"), jsonData));
         setHeaderAndUA(builder, headers);
+        return builder.build();
+    }
+
+    /**
+     * 上传文件
+     *
+     * @param url      上传的路径
+     * @param fileName 上传的文件名
+     * @param filePath 上传的文件路径
+     */
+    public static Response postMedia(String url, String fileName, String filePath, String param) {
+        Response response = null;
+        try {
+            response = getOkHttpClient().newCall(postMediaRequest(url, fileName, filePath, param)).execute();
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+        return response;
+    }
+
+
+    /**
+     * 生成文件类型的request
+     *
+     * @param url      上传的路径
+     * @param fileName 上传的文件名
+     * @param filePath 上传的文件路径
+     * @param param    上传的参数
+     */
+    public static Request postMediaRequest(String url, String fileName, String filePath, String param) {
+
+        MultipartBody.Builder multipartBuilder = new MultipartBody.Builder();
+        File file = new File(filePath);
+        RequestBody bodyFile = RequestBody.create(MediaType.parse("application/octet-stream"), file);
+
+        RequestBody requestBody = multipartBuilder
+                .setType(MultipartBody.FORM)
+                .addFormDataPart(param, fileName, bodyFile)
+                .build();
+
+
+        Request.Builder builder = new Request.Builder();
+        builder.url(url);
+        builder.post(requestBody);
         return builder.build();
     }
 

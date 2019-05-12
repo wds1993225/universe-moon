@@ -254,7 +254,6 @@ public class FileUtil {
             while ((len = inputStream.read(buf)) != -1) {
                 current += len;
                 fos.write(buf, 0, len);
-                log.debug("Current  is : {}", current);
             }
             fos.flush();
             fos.close();

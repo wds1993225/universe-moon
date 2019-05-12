@@ -7,9 +7,11 @@ import java.util.List;
 
 /**
  * @author moon
- *         <p>
- *         <p>
- *         redis 的操作封装
+ * <p>
+ * <p>
+ * redis 的操作封装
+ * <p>
+ * 方法名应该为 类型_动作
  */
 @Slf4j
 public class RedisUtil {
@@ -43,12 +45,14 @@ public class RedisUtil {
 
     /**
      * 操作SET集
+     * <p>
+     * 将一个元素插入SET集合
      *
      * @param setName SET集合的名字
      * @param value   要加入SET集合的值
      * @return 插入成功返回 1，已有数据 0 ，插入失败
      */
-    public static Long setOperate(String setName, String value) {
+    public static Long setADD(String setName, String value) {
         Jedis jedis = null;
         Long insertSuccess = null;
         try {

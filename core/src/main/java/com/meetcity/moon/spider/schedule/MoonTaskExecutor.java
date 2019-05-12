@@ -246,7 +246,7 @@ public class MoonTaskExecutor {
     private void recordToRedis(String removalDuplicateData) {
         if (config != null && config.isUseRemoveDuplicate()) {
             String md5 = DigestUtils.md5Hex(removalDuplicateData);     //redis存 MD5后的数据，打印和上报 都使用原始数据
-            RedisUtil.setOperate(StringUtil.isEmpty(config.getRemovalDuplicateSETName()) ?
+            RedisUtil.setADD(StringUtil.isEmpty(config.getRemovalDuplicateSETName()) ?
                     Constants.removalDuplicateSETName : config.getRemovalDuplicateSETName(), md5);
         }
 
